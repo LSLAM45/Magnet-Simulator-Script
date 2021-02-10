@@ -1,0 +1,146 @@
+-- Instances:
+
+local GUI = Instance.new("ScreenGui")
+local TopFrame = Instance.new("Frame")
+local Autofarm = Instance.new("TextButton")
+local Bag = Instance.new("TextButton")
+local Sell = Instance.new("TextButton")
+local TextLabel = Instance.new("TextLabel")
+local TextLabel_2 = Instance.new("TextLabel")
+
+--Properties:
+
+GUI.Name = "GUI"
+GUI.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+GUI.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+
+TopFrame.Name = "TopFrame"
+TopFrame.Parent = GUI
+TopFrame.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+TopFrame.Position = UDim2.new(0.649296939, 0, 0.758418739, 0)
+TopFrame.Size = UDim2.new(0, 379, 0, 165)
+
+Autofarm.Name = "Autofarm"
+Autofarm.Parent = TopFrame
+Autofarm.BackgroundColor3 = Color3.fromRGB(157, 9, 12)
+Autofarm.Position = UDim2.new(0, 0, 0.774940073, 0)
+Autofarm.Size = UDim2.new(0, 379, 0, 37)
+Autofarm.Font = Enum.Font.Fantasy
+Autofarm.Text = "Autofarm"
+Autofarm.TextColor3 = Color3.fromRGB(0, 0, 0)
+Autofarm.TextScaled = true
+Autofarm.TextSize = 14.000
+Autofarm.TextWrapped = true
+
+Bag.Name = "Bag"
+Bag.Parent = TopFrame
+Bag.BackgroundColor3 = Color3.fromRGB(157, 9, 12)
+Bag.Position = UDim2.new(0, 0, 0.38402909, 0)
+Bag.Size = UDim2.new(0, 379, 0, 37)
+Bag.Font = Enum.Font.Fantasy
+Bag.Text = "Delete Full Bag"
+Bag.TextColor3 = Color3.fromRGB(0, 0, 0)
+Bag.TextScaled = true
+Bag.TextSize = 14.000
+Bag.TextWrapped = true
+
+Sell.Name = "Sell"
+Sell.Parent = TopFrame
+Sell.BackgroundColor3 = Color3.fromRGB(157, 9, 12)
+Sell.Position = UDim2.new(0, 0, -0.00449365377, 0)
+Sell.Size = UDim2.new(0, 379, 0, 37)
+Sell.Font = Enum.Font.Fantasy
+Sell.Text = "AutoSell"
+Sell.TextColor3 = Color3.fromRGB(0, 0, 0)
+Sell.TextScaled = true
+Sell.TextSize = 14.000
+Sell.TextWrapped = true
+
+TextLabel.Parent = TopFrame
+TextLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+TextLabel.Position = UDim2.new(0.810026407, 0, -0.162069425, 0)
+TextLabel.Size = UDim2.new(0, 72, 0, 26)
+TextLabel.Font = Enum.Font.Cartoon
+TextLabel.Text = "M to hide GUI"
+TextLabel.TextColor3 = Color3.fromRGB(0, 0, 0)
+TextLabel.TextScaled = true
+TextLabel.TextSize = 14.000
+TextLabel.TextWrapped = true
+
+TextLabel_2.Parent = TopFrame
+TextLabel_2.BackgroundColor3 = Color3.fromRGB(8, 0, 255)
+TextLabel_2.Position = UDim2.new(0, 0, -0.162069425, 0)
+TextLabel_2.Size = UDim2.new(0, 307, 0, 25)
+TextLabel_2.Font = Enum.Font.SourceSans
+TextLabel_2.Text = "Credit to LSLAM45"
+TextLabel_2.TextColor3 = Color3.fromRGB(255, 255, 255)
+TextLabel_2.TextScaled = true
+TextLabel_2.TextSize = 14.000
+TextLabel_2.TextWrapped = true
+
+-- Scripts:
+
+local function MHUPUNC_fake_script() -- Autofarm.Script 
+    local script = Instance.new('Script', Autofarm)
+
+        local r = game:GetService("ReplicatedStorage").Events.MagnetEvents.requestGrab
+        local rs = game:GetService('RunService').RenderStepped
+    
+    Autofarm.MouseButton1Click:Connect(function()
+        while rs:wait() do
+            tool = "Lucky Long Tri-Magnet"
+            for i = 1,5 do
+                r:FireServer("1040000000", game.ReplicatedStorage.Tools[tool])
+            end
+        end
+    end)
+end
+coroutine.wrap(MHUPUNC_fake_script)()
+local function CPHOF_fake_script() -- Bag.Script 
+    local script = Instance.new('Script', Bag)
+
+    Bag.MouseButton1Click:Connect(function()
+        game.Players.LocalPlayer.PlayerGui.GameHUD.FullBackpack:Destroy()
+    end)
+end
+coroutine.wrap(CPHOF_fake_script)()
+local function RVJRTYE_fake_script() -- Sell.Script 
+    local script = Instance.new('Script', Sell)
+
+    Sell.MouseButton1Click:Connect(function()
+        _G.on = true
+        local plr = game.Players.LocalPlayer
+        local char = plr.Character.HumanoidRootPart
+    
+        while _G.on do
+            game.Workspace.Rings.Sellx2.CanCollide = false
+            game.Workspace.Rings.Sellx2.Transparency = 1
+            game.Workspace.Rings.Sellx2.CFrame = char.CFrame + Vector3.new(0,math.random(-1,1),0)
+            wait(0.1)
+        end
+    end)
+end
+coroutine.wrap(RVJRTYE_fake_script)()
+local function WPYL_fake_script() -- TopFrame.Script 
+    local script = Instance.new('Script', TopFrame)
+
+    TopFrame.Active = true
+    TopFrame.Draggable = true
+end
+coroutine.wrap(WPYL_fake_script)()
+local function FIJB_fake_script() -- TopFrame.Script 
+    local script = Instance.new('Script', TopFrame)
+
+    function onKeyPress(inputObject, gameProcessedEvent)
+        if inputObject.KeyCode == Enum.KeyCode.M then
+            if TopFrame.Visible == false then
+                TopFrame.Visible = true
+            else
+                TopFrame.Visible = false
+            end
+        end
+    end
+    
+    game:GetService("UserInputService").InputBegan:connect(onKeyPress)
+end
+coroutine.wrap(FIJB_fake_script)()
